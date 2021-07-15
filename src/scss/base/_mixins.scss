@@ -1,0 +1,25 @@
+@mixin media($dispositivo){
+    @if $dispositivo=="telefono"{
+        @media (min-width:480px){
+            @content;
+        }
+    }
+    @if $dispositivo=="tablet"{
+        @media (min-width:768px){
+            @content;
+        }
+    }
+    @if $dispositivo=="desktop"{
+        @media (min-width:1200px){
+            @content;
+        }
+    }
+}
+
+@mixin grid($columnas,$fraccion,$row-g,$col-g){
+    display:grid;
+    grid-template-columns:repeat($columnas,$fraccion);
+    gap:$row-g $col-g;
+}
+
+
