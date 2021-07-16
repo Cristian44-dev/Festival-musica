@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap");
+/*Separaciones 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nobis culpa nisi minima consequatur alias repellendus sunt, mollitia fuga facilis dolore nulla quidem beatae necessitatibus. Ipsum recusandae facere reiciendis eius.*/
 .bg-verde {
   background-color: #4CBBB3;
 }
@@ -606,7 +608,7 @@ span {
   list-style: none;
 }
 .escenarios-contenedor .calendario li {
-  padding: 2.5;
+  padding: 2.5rem;
   font-weight: 700;
 }
 .escenarios-contenedor span {
