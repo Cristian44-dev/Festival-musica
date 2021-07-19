@@ -20,6 +20,7 @@
     display:grid;
     grid-template-columns:repeat($columnas,$fraccion);
     gap:$row-g $col-g;
+    @content;
 }
 
 
