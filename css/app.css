@@ -654,3 +654,6 @@ span {
   margin-right: auto;
   margin-left: auto;
 }
+.galeria .imagen__galeria {
+  cursor: pointer;
+}
