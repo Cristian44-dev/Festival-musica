@@ -485,6 +485,11 @@ span {
     margin-bottom: 0;
   }
 }
+.header.fijo {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 0.3rem 0.4rem #4444;
+}
 
 .navegacionPrincipal {
   display: flex;
@@ -506,7 +511,6 @@ span {
 }
 .video .overlay {
   position: absolute;
-  z-index: 1;
   width: 100%;
   height: 100%;
   background: linear-gradient(161deg, #020024 0%, rgba(189, 130, 188, 0.55) 99%);
@@ -598,10 +602,10 @@ span {
   margin: 2rem auto 0 auto;
 }
 .escenarios-contenedor .rock .nombre-escenario::after {
-  background-image: url("../src/build/img/icono_rock.webp");
+  background-image: url("../img/icono_rock.webp");
 }
 .escenarios-contenedor .edm .nombre-escenario::after {
-  background-image: url("../src/build/img/icono_edm.webp");
+  background-image: url("../img/icono_edm.webp");
 }
 .escenarios-contenedor .calendario {
   padding: 0;
@@ -653,7 +657,87 @@ span {
   display: block;
   margin-right: auto;
   margin-left: auto;
-}
-.galeria .imagen__galeria {
   cursor: pointer;
 }
+
+.mostrarImagen {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-fijo {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.boletos {
+  padding: 5rem 0;
+}
+.boletos h3 {
+  text-align: center;
+  color: white;
+}
+.boletos .contenedor-boletos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 5rem;
+}
+.boletos .plan p {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pase {
+  width: 100%;
+}
+.pase thead {
+  background-color: #F53756;
+}
+.pase thead th {
+  padding: 1.25rem;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 2rem;
+}
+.pase tbody {
+  background-color: white;
+}
+.pase tbody td {
+  padding: 1.25rem;
+  border-bottom: 1px solid #e1e1e1;
+}
+.pase tbody tr:last-child td {
+  border: none;
+}
+.pase tfoot {
+  background-color: #752F97;
+}
+.pase tfoot td {
+  padding: 1.25rem;
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+}
+
+.footer {
+  background-color: #F53756;
+  padding: 1.25rem;
+  text-align: center;
+}
+.footer p {
+  color: white;
+  margin: 0;
+}
+/*# sourceMappingURL=app.css.map */

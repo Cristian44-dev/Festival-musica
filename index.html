@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="build/css/app.min.css">
     <title>Rock & EDM Festival</title>
 </head>
 <body>
@@ -13,9 +13,9 @@
         <div class="contenedor header__contenido">
             <h1>Rock & EDM Festival</h1>
             <nav class="navegacionPrincipal">
-                <a href="#">Line up</a>
-                <a href="#">Galeria</a>
-                <a href="#">Boletos</a>
+                <a href="#lineup">Line up</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#boletos">Boletos</a>
             </nav>
         </div>
 
@@ -42,7 +42,7 @@
     <div class="sobre-festival contenedor">
         
         <div class="imagen">
-            <img src="src/build/img/imagen_vocalista.webp" alt="imagen de vocalista">
+            <img src="build/img/imagen_vocalista.webp" alt="imagen de vocalista">
         </div>
 
         <div class="contenido-festival">
@@ -53,7 +53,7 @@
 
     </div>
 
-    <section class="lineup">
+    <section class="lineup" id="lineup">
 
         <h3>Line Up</h3>
         <p class="dia">Viernes 21</p>
@@ -123,14 +123,98 @@
     </section>
 
 
-    <section class="galeria contenedor">
+    <section class="galeria contenedor" id="galeria">
+
         <h1 class="galeria__titulo">Galeria</h1>
 
         <ul class="galeria__imagenes"></ul>
+
     </section>
 
 
-    <script src="src/build/js/bundle.js"></script>
+    <section class="boletos bg-verde" id="boletos">
+        <h3>Boletos</h3>
+
+        <div class="contenedor-boletos contenedor">
+            <div class="basico plan">
+                <p>Pase 1 Día</p>
+
+                <table class="pase">
+                    <thead>
+                        <tr>
+                            <th>Incluye</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Acceso a todos los escenarios</td>
+                        </tr>
+
+                        <tr>
+                            <td>Comida y bebida</td>
+                        </tr>
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td>$100</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+            <div class="premium plan">
+                <p>Pase 2 Días</p>
+
+                <table class="pase">
+                    <thead>
+                        <tr>
+                            <th>Incluye</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Acceso a todos los escenarios</td>
+                        </tr>
+
+                        <tr>
+                            <td>Comida y bebida</td>
+                        </tr>
+
+                        <tr>
+                            <td>Camisa del evento</td>
+                        </tr>
+
+                        <tr>
+                            <td>Acceso vip</td>
+                        </tr>
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td>$180</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+        <p>Rock & EDM festival. Todos los derechos reservados</p>
+    </footer>
+    
+
+    <script src="build/js/bundle.min.js"></script>
 
 </body>
 </html>

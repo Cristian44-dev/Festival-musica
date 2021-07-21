@@ -1,59 +1,71 @@
-let gulp=require('gulp');
-let imagemin = require('gulp-imagemin');
-let sass=require('gulp-sass')(require ('sass'));
-let colors=require('colors');
-let notify=require('gulp-notify');
-let webp=require('gulp-webp');
-let concat=require('gulp-concat');
-
-const path={
-    imagenes:"./src/img/**/*",
-    scss:"./src/scss/app.scss",
-    destcss:"./css",
-    destimg:"./src/build/img",
-    js:'./js/**/*'
-}
+const gulp=require('gulp');
+const sass=require('gulp-sass')(require ('sass'));
+const sourcemap=require('gulp-sourcemaps');
+const postcss=require('gulp-postcss');
+const rename=require ('gulp-rename');
+const concat=require ('gulp-concat');
+const terser= require ('gulp-terser-js');
+const webp=require('gulp-webp');
+const colors=require('colors');
+const notify=require('gulp-notify');
 
 function css(){
-    return gulp.src(path.scss)
-    .pipe(sass({outputStyle:'expanded'}))
-    .pipe(gulp.dest(path.destcss))
+    return gulp.src('./src/scss/app.scss')
+    .pipe(sourcemap.init())
+    .pipe(sass())
+    .pipe(sourcemap.write('./')) //crea el archivo en la misma ruta 
+    .pipe(gulp.dest('./build/css'))
 }
 
 function minCss(){
-    return gulp.src(path.scss)
-    .pipe(sass({outputStyle:'compressed'}))
-    .pipe(gulp.dest(path.destcss))
-    .pipe(notify(()=> console.log(colors.blue.bold("Css mificado"))))
-}
-
-function watchCss(){
-    return gulp.watch('./src/scss/**/*.scss',css);
-}
-
-function minImage(){
-    return gulp.src(path.imagenes)
-    .pipe(imagemin())
-    .pipe(gulp.dest(path.destimg))
-    .pipe(notify(()=> console.log(colors.blue.bold("Imagen minificada con exito"))))
-}
-
-function webP(){
-    return gulp.src(path.imagenes)
-    .pipe(webp())
-    .pipe(gulp.dest(path.destimg))
-    .pipe(notify(()=> console.log(colors.blue.bold("Imagen convertida con exito"))))
+    return gulp.src('./build/css/app.css')
+    .pipe(sourcemap.init())
+    .pipe(postcss([require('autoprefixer'),require('cssnano')]))
+    .pipe(rename('app.min.css'))
+    .pipe(sourcemap.write('./'))
+    .pipe(gulp.dest('./build/css'))
 }
 
 function javascript(){
-    return gulp.src(path.js)
+    return gulp.src('./src/js/**.js')
+    .pipe(sourcemap.init())
     .pipe(concat('bundle.js'))
-    .pipe(gulp.dest('./src/build/js')) 
+    .pipe(sourcemap.write('./'))
+    .pipe(gulp.dest('./build/js'))
 }
 
-exports.javascript=javascript
-exports.webP=webP;
-exports.minImage=minImage;
+function minJavascript(){
+    return gulp.src('./src/js/**.js')
+    .pipe(sourcemap.init())
+    .pipe(concat('bundle.js'))
+    .pipe(terser())
+    .pipe(rename('bundle.min.js'))
+    .pipe(sourcemap.write('./'))
+    .pipe(gulp.dest('./build/js'))
+}
+
+function webP(){
+    return gulp.src('./src/img/**/*')
+    .pipe(webp())
+    .pipe(gulp.dest('./build/img'))
+    .pipe(notify(()=> console.log(colors.blue.bold("Imagen convertida con exito"))))
+}
+
+
+
+function watch(){
+    gulp.watch('./src/scss/**/*.scss',css);
+    gulp.watch('./src/scss/**/*.scss',minCss);
+    gulp.watch('./src/js/*.js',javascript);
+    gulp.watch('./src/js/*.js',minJavascript);
+}
+
+
+
 exports.css=css;
 exports.minCss=minCss;
-exports.watchCss=watchCss;
+exports.javascript=javascript;
+exports.minJavascript=minJavascript;
+exports.webP=webP;
+exports.watch=watch;
+exports.default=gulp.series(webP,css,javascript);
